@@ -2,10 +2,10 @@ package com.jparelation.repository;
 
 import com.jparelation.entity.Car;
 import com.jparelation.entity.Person;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,11 +23,11 @@ public class PersonRepositoryTest {
     @Autowired
     CarRepository carRepository;
 
-    @Transactional
-    @Test
-    void findAllTest() {
+    List<Car> cars = new ArrayList<>();
 
-        List<Car> cars = new ArrayList<>();
+    @BeforeEach
+    void before() {
+
         for (int i = 0; i < 10; i++) {
             cars.add(Car.builder()
                     .name("car" + i)
@@ -43,13 +43,30 @@ public class PersonRepositoryTest {
                         .name("mingble")
                         .cars(Collections.emptyList())
                         .build()));
+    }
 
-        List<Person> personList1 = personRepository.findAll();
+    @Test
+    void findAllTest() {
+
+        List<Person> personList = personRepository.findAll();
 
         System.out.println("----------start - getCarName-----------");
-        System.out.println(personList1.get(0).getCarNames());
+        System.out.println(personList.get(0).getCarNames());
         System.out.println("----------end getCarName-----------");
-        assertThat(personList1.get(0).getCarNames())
+        assertThat(personList.get(0).getCarNames())
                 .isNotNull();
+    }
+
+    @Test
+    void findAllEagerTest() {
+
+        System.out.println("----------start - findAll()-----------");
+        List<Person> personList = personRepository.findAll();
+        System.out.println("----------end - findAll()-----------");
+
+        System.out.println("----------start - add()-----------");
+        List<Car> cars = new ArrayList<>();
+        personList.forEach(it -> cars.addAll(it.getCars()));
+        System.out.println("----------end - add()-----------");
     }
 }
