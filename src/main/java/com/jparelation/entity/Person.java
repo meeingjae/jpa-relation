@@ -32,7 +32,7 @@ public class Person {
     @Column
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "person", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "person", fetch = FetchType.EAGER)
     private List<Car> cars;
 
     @Override
