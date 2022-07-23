@@ -1,7 +1,9 @@
-package com.jparelation.repository;
+package com.jparelation.person;
 
-import com.jparelation.entity.Car;
-import com.jparelation.entity.Person;
+import com.jparelation.car.Car;
+import com.jparelation.car.CarRepository;
+import com.jparelation.person.Person;
+import com.jparelation.person.PersonRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
