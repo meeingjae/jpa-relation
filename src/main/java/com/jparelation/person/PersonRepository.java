@@ -1,6 +1,5 @@
-package com.jparelation.repository;
+package com.jparelation.person;
 
-import com.jparelation.entity.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
