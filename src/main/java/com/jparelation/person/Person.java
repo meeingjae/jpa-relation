@@ -1,5 +1,6 @@
-package com.jparelation.entity;
+package com.jparelation.person;
 
+import com.jparelation.car.Car;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
